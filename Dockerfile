@@ -128,6 +128,7 @@ RUN uv pip install -r ComfyUI-Frame-Interpolation/requirements-no-cupy.txt
 
 WORKDIR /
 
+COPY assets/10050.png /comfyui/input/
 COPY scripts/comfy-node-install.sh /usr/local/bin/comfy-node-install
 RUN chmod +x /usr/local/bin/comfy-node-install
 
