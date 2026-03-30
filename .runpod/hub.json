@@ -6,10 +6,10 @@
   "iconUrl": "https://cpjrphpz3t5wbwfe.public.blob.vercel-storage.com/comfy-ui.png",
   "config": {
     "runsOn": "GPU",
-    "containerDiskInGb": 20,
-    "gpuIds": "NVIDIA GeForce RTX 5090",
+    "containerDiskInGb": 30,
+    "gpuIds": "NVIDIA L40,NVIDIA A40,NVIDIA GeForce RTX 5090",
     "gpuCount": 1,
-    "allowedCudaVersions": ["12.8"],
+    "allowedCudaVersions": ["12.8","12.7","12.1", "12.2", "12.3", "12.4"],
     "env": [
       {
         "key": "COMFY_ORG_API_KEY",
