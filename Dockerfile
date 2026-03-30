@@ -139,6 +139,10 @@ ENV PIP_NO_INPUT=1
 COPY scripts/comfy-manager-set-mode.sh /usr/local/bin/comfy-manager-set-mode
 RUN chmod +x /usr/local/bin/comfy-manager-set-mode
 
+RUN ln -s /runpod-volume/models /comfyui/models
+RUN ln -s /runpod-volume/input /comfyui/input
+RUN ln -s /runpod-volume/output /comfyui/output
+
 # Set the default command to run when starting the container
 CMD ["/start.sh"]
 
