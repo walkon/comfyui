@@ -1,0 +1,287 @@
+{
+  "tests": [
+    {
+      "name": "basic_test",
+      "input": {
+        "workflow": {
+            "3": {
+                "inputs": {
+                    "seed": 1092829710650963,
+                    "steps": 12,
+                    "cfg": 3.5,
+                    "sampler_name": "euler_ancestral",
+                    "scheduler": "sgm_uniform",
+                    "denoise": 1,
+                    "model": [
+                        "261",
+                        0
+                    ],
+                    "positive": [
+                        "447",
+                        0
+                    ],
+                    "negative": [
+                        "437",
+                        0
+                    ],
+                    "latent_image": [
+                        "388",
+                        0
+                    ]
+                },
+                "class_type": "KSampler",
+                "_meta": {
+                    "title": "KSampler"
+                }
+            },
+            "4": {
+                "inputs": {
+                    "ckpt_name": "bigLust_v16.safetensors"
+                },
+                "class_type": "CheckpointLoaderSimple",
+                "_meta": {
+                    "title": "Load Checkpoint"
+                }
+            },
+            "8": {
+                "inputs": {
+                    "samples": [
+                        "3",
+                        0
+                    ],
+                    "vae": [
+                        "4",
+                        2
+                    ]
+                },
+                "class_type": "VAEDecode",
+                "_meta": {
+                    "title": "VAE Decode"
+                }
+            },
+            "11": {
+                "inputs": {
+                    "lora_name": "sdxl/Hyper-SDXL-12steps-CFG-lora.safetensors",
+                    "strength_model": 0.8,
+                    "model": [
+                        "4",
+                        0
+                    ]
+                },
+                "class_type": "LoraLoaderModelOnly",
+                "_meta": {
+                    "title": "LoRA1"
+                }
+            },
+            "12": {
+                "inputs": {
+                    "lora_name": "sdxl/big_lust_RAW_photography.safetensors",
+                    "strength_model": 0.7,
+                    "model": [
+                        "11",
+                        0
+                    ]
+                },
+                "class_type": "LoraLoaderModelOnly",
+                "_meta": {
+                    "title": "LoRA2"
+                }
+            },
+            "13": {
+                "inputs": {
+                    "lora_name": "sdxl/PornMaster-pov handjob1-sdxl-V1-lora.safetensors",
+                    "strength_model": 0.7,
+                    "model": [
+                        "12",
+                        0
+                    ]
+                },
+                "class_type": "LoraLoaderModelOnly",
+                "_meta": {
+                    "title": "LoRA3"
+                }
+            },
+            "261": {
+                "inputs": {
+                    "weight": 0.75,
+                    "weight_faceidv2": 0.75,
+                    "weight_type": "linear",
+                    "combine_embeds": "concat",
+                    "start_at": 0.15,
+                    "end_at": 0.9,
+                    "embeds_scaling": "V only",
+                    "model": [
+                        "262",
+                        0
+                    ],
+                    "ipadapter": [
+                        "262",
+                        1
+                    ],
+                    "image": [
+                        "411",
+                        0
+                    ],
+                    "clip_vision": [
+                        "439",
+                        0
+                    ]
+                },
+                "class_type": "IPAdapterFaceID",
+                "_meta": {
+                    "title": "IPAdapter FaceID"
+                }
+            },
+            "262": {
+                "inputs": {
+                    "preset": "FACEID PLUS V2",
+                    "lora_strength": 0.8,
+                    "provider": "CUDA",
+                    "model": [
+                        "270",
+                        0
+                    ]
+                },
+                "class_type": "IPAdapterUnifiedLoaderFaceID",
+                "_meta": {
+                    "title": "IPAdapter Unified Loader FaceID"
+                }
+            },
+            "268": {
+                "inputs": {
+                    "images": [
+                        "261",
+                        1
+                    ]
+                },
+                "class_type": "PreviewImage",
+                "_meta": {
+                    "title": "Preview Image"
+                }
+            },
+            "270": {
+                "inputs": {
+                    "scale": 1.2,
+                    "model": [
+                        "13",
+                        0
+                    ]
+                },
+                "class_type": "PerturbedAttentionGuidance",
+                "_meta": {
+                    "title": "PAG"
+                }
+            },
+            "387": {
+                "inputs": {
+                    "resolution": "portrait - 768x1344 (9:16)"
+                },
+                "class_type": "SDXL Resolutions (JPS)",
+                "_meta": {
+                    "title": "图片分辨率"
+                }
+            },
+            "388": {
+                "inputs": {
+                    "width": [
+                        "387",
+                        0
+                    ],
+                    "height": [
+                        "387",
+                        1
+                    ],
+                    "batch_size": 1
+                },
+                "class_type": "EmptyLatentImage",
+                "_meta": {
+                    "title": "Empty Latent Image"
+                }
+            },
+            "411": {
+                "inputs": {
+                    "image": "10050.png"
+                },
+                "class_type": "LoadImage",
+                "_meta": {
+                    "title": "Load Image"
+                }
+            },
+            "430": {
+                "inputs": {
+                    "filename_prefix": "test/aa_",
+                    "images": [
+                        "8",
+                        0
+                    ]
+                },
+                "class_type": "SaveImage",
+                "_meta": {
+                    "title": "Save Image"
+                }
+            },
+            "437": {
+                "inputs": {
+                    "text": "(worst quality, low quality, normal quality), blurry, ugly, deformed, disfigured,\nbad anatomy, bad hands, missing fingers, extra limbs, mutated hands,\nwatermark, text, signature, cropped, out of frame, deformed iris, deformed pupils,from side, profile, turned away, looking away,pure body,out of frame, cartoon, 3d, cgi, anime, lowres, text, , bad anatomy,bad composition, poor, low effort, glitch, deformed, mutated, cheap, noisy, blurry, unattractive, amateurish,",
+                    "clip": [
+                        "438",
+                        0
+                    ]
+                },
+                "class_type": "CLIPTextEncode",
+                "_meta": {
+                    "title": "Negative Prompt"
+                }
+            },
+            "438": {
+                "inputs": {
+                    "stop_at_clip_layer": -2,
+                    "clip": [
+                        "4",
+                        1
+                    ]
+                },
+                "class_type": "CLIPSetLastLayer",
+                "_meta": {
+                    "title": "CLIP Set Last Layer"
+                }
+            },
+            "439": {
+                "inputs": {
+                    "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+                },
+                "class_type": "CLIPVisionLoader",
+                "_meta": {
+                    "title": "Load CLIP Vision"
+                }
+            },
+            "447": {
+                "inputs": {
+                    "text": "score_9, score_8_up,\ngirl, 20 year old, white woman, black hair, braided hair, brown eyes, light skin,shiny skin, detailed skin\nhuge breasts, big butt, curvy body, thick thighs, voluptuous,\nprofessional photography, 8k, photorealistic,raw photo, film grain, dslr, harsh lighting.\nhandjob, 1girl held the man's large penis and masturbated him, smiling as she looked at him. Outdoor soccer field.",
+                    "clip": [
+                        "438",
+                        0
+                    ]
+                },
+                "class_type": "CLIPTextEncode",
+                "_meta": {
+                    "title": "Positive Prompt"
+                }
+            }
+        }
+      },
+      "timeout": 300000
+    }
+  ],
+  "config": {
+    "gpuTypeId": "NVIDIA GeForce RTX 5090",
+    "gpuCount": 1,
+    "env": [
+      {
+        "key": "REFRESH_WORKER",
+        "value": "false"
+      }
+    ],
+    "allowedCudaVersions": ["12.8"]
+  }
+}
