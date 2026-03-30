@@ -1,22 +1,9 @@
 #!/usr/bin/env bash
 
-# Start SSH server if PUBLIC_KEY is set (enables remote access and dev-sync.sh)
-if [ -n "$PUBLIC_KEY" ]; then
-    mkdir -p ~/.ssh
-    echo "$PUBLIC_KEY" > ~/.ssh/authorized_keys
-    chmod 700 ~/.ssh
-    chmod 600 ~/.ssh/authorized_keys
-
-    # Generate host keys if they don't exist (removed during image build for security)
-    for key_type in rsa ecdsa ed25519; do
-        key_file="/etc/ssh/ssh_host_${key_type}_key"
-        if [ ! -f "$key_file" ]; then
-            ssh-keygen -t "$key_type" -f "$key_file" -q -N ''
-        fi
-    done
-
-    service ssh start && echo "worker-comfyui: SSH server started" || echo "worker-comfyui: SSH server could not be started" >&2
-fi
+# 运行时创建软链接（这才是有效的！）
+ln -sf /runpod-volume/models /comfyui/models
+ln -sf /runpod-volume/input /comfyui/input
+ln -sf /runpod-volume/output /comfyui/output
 
 # Use libtcmalloc for better memory management
 TCMALLOC="$(ldconfig -p | grep -Po "libtcmalloc.so.\d" | head -n 1)"
@@ -49,6 +36,13 @@ echo "worker-comfyui: GPU available — $GPU_CHECK"
 
 # Ensure ComfyUI-Manager runs in offline network mode inside the container
 comfy-manager-set-mode offline || echo "worker-comfyui - Could not set ComfyUI-Manager network_mode" >&2
+
+if [ -f /comfyui/models/checkpoints/bigLust_v16.safetensors ]
+then 
+    echo "found /comfyui/models/checkpoints/bigLust_v16.safetensors";
+else
+    echo "not found /comfyui/models/checkpoints/bigLust_v16.safetensors";
+fi
 
 echo "worker-comfyui: Starting ComfyUI"
 
