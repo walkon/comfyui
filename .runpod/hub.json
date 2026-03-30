@@ -2,7 +2,7 @@
   "title": "ComfyUI (Network Volume)",
   "description": "private project",
   "type": "serverless",
-  "category": "images",
+  "category": "image",
   "iconUrl": "https://cpjrphpz3t5wbwfe.public.blob.vercel-storage.com/comfy-ui.png",
   "config": {
     "runsOn": "GPU",
