@@ -197,7 +197,7 @@
             },
             "411": {
                 "inputs": {
-                    "image": "10050.png"
+                    "image": "/runpod-volume/input/10050.png"
                 },
                 "class_type": "LoadImage",
                 "_meta": {
@@ -206,7 +206,7 @@
             },
             "430": {
                 "inputs": {
-                    "filename_prefix": "test/aa_",
+                    "filename_prefix": "images/face",
                     "images": [
                         "8",
                         0
